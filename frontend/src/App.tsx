@@ -1,10 +1,22 @@
+import { useState, useEffect } from "react";
+import { fetchTasks } from "./utils/api";
+
 function App() {
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    fetchTasks().then(setTasks);
+  }, []);
+
   return (
-    <>
-      <h1 className='text-3xl font-bold text-blue-600 text-center mt-24'>
-        Hello World!
-      </h1>
-    </>
+    <div>
+      <h1>Task Management App</h1>
+      <ul>
+        {tasks.map((task: any) => (
+          <li key={task.id}>{task.title}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

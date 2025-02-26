@@ -16,11 +16,14 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "joi": "^17.13.3",
     "mongoose": "^8.10.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/joi": "^17.2.3",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^22.13.5",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
