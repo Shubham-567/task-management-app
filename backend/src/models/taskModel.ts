@@ -13,7 +13,7 @@ const taskSchema = new mongoose.Schema<ITask>({
   description: { type: String },
   category: {
     type: String,
-    enum: ["To Do", "In Progress", "Demo", "Timeout"],
+    enum: ["To Do", "In Progress", "Done", "Timeout"],
     default: "To Do",
   },
 
