@@ -10,7 +10,7 @@ const TaskList = () => {
   return (
     <div className='grid grid-cols-3 gap-4 p-4'>
       {categories.map((category) => (
-        <div key={category} className='bg-gray-100 p-4 rounded-md'>
+        <div key={category} className='bg-gray-100 p-4 rounded-xl'>
           <h2 className='text-lg text-center font-semibold'>{category}</h2>
 
           {tasks

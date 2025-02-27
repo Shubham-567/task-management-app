@@ -4,7 +4,7 @@ const TaskItem = ({ task }: { task: Task }) => {
   const deadline = new Date(task.expiresAt).toLocaleDateString("en-GB");
 
   return (
-    <div className='bg-white shadow-md p-4 rounded-lg mt-2 min-h-42'>
+    <div className='bg-white shadow-md p-4 rounded-xl mt-2 min-h-42'>
       <div className='text-xs text-red-600 bg-red-100 inline px-2 py-1 rounded-md'>
         {task.priority}
       </div>
