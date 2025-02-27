@@ -1,8 +1,14 @@
+import TaskList from "./components/TaskList";
+
+import { TaskProvider } from "./context/TaskContext";
+
 function App() {
   return (
-    <div>
-      <h1>Task Management App</h1>
-    </div>
+    <TaskProvider>
+      <div>
+        <TaskList />
+      </div>
+    </TaskProvider>
   );
 }
 

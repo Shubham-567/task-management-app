@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
 import { getTasks } from "../api/taskApi";
 
-interface Task {
+export interface Task {
   _id: string;
   title: string;
   description?: string;
