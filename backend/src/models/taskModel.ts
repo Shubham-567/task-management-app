@@ -4,6 +4,7 @@ export interface ITask extends mongoose.Document {
   title: string;
   description?: string;
   category: "To Do" | "In Progress" | "Done" | "Timeout";
+  priority: "Low" | "Medium" | "High";
   createdAt: Date;
   expiresAt: Date;
 }
@@ -15,6 +16,11 @@ const taskSchema = new mongoose.Schema<ITask>({
     type: String,
     enum: ["To Do", "In Progress", "Done", "Timeout"],
     default: "To Do",
+  },
+  priority: {
+    type: String,
+    enum: ["Low", "Medium", "High"],
+    default: "Medium",
   },
 
   createdAt: { type: Date, default: Date.now },
