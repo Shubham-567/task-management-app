@@ -1,0 +1,107 @@
+/* Calendar Container */
+.react-calendar {
+  width: 320px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+  border: 1px solid #e5e7eb;
+}
+
+/* Month Navigation */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.react-calendar__navigation button {
+  color: #000000;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.react-calendar__navigation button:hover {
+  color: #2563eb;
+}
+
+.react-calendar__navigation button:disabled {
+  color: #d1d5db;
+  cursor: not-allowed;
+}
+
+/* Days of the Week */
+.react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  color: #4a4a4a;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.react-calendar__month-view__weekdays abbr {
+  text-decoration: none !important;
+  font-weight: normal;
+}
+
+/* Days */
+.react-calendar__tile {
+  background: transparent;
+  border: none;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border-radius: 8px;
+}
+
+/* Weekends (Current Month) */
+.react-calendar__month-view__days__day:not(
+    .react-calendar__month-view__days__day--neighboringMonth
+  ).react-calendar__month-view__days__day--weekend {
+  color: black;
+}
+
+/* Neighboring Month Days */
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #757575 !important;
+}
+
+/* Hover Effect on Days */
+.react-calendar__tile:enabled:hover {
+  background: #f3f4f6;
+  border-radius: 50%;
+  transform: scale(1.05);
+}
+
+/* Selected Date */
+.react-calendar__tile--active {
+  background: #000000 !important;
+  color: #ffffff !important;
+  font-weight: bold;
+  border-radius: 50%;
+  transform: scale(1.1);
+}
+
+/* Current Day */
+.react-calendar__tile--now {
+  background: black !important;
+  color: white !important;
+  border-radius: 50%;
+  transform: scale(1.05);
+}
+
+/* Disabled Dates */
+.react-calendar__tile--disabled {
+  color: #9ca3af !important;
+  opacity: 0.6;
+  cursor: not-allowed;
+}

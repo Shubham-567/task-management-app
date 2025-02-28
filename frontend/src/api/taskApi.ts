@@ -14,6 +14,7 @@ export const getTaskById = async (id: string) => {
 
 export const createTask = async (task: {
   title: string;
+  description?: string;
   expiresAt: string;
 }) => {
   const response = await axios.post(API_URL, task);
