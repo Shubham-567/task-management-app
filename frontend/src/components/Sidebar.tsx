@@ -27,7 +27,7 @@ const Sidebar = ({ onAddTask }: { onAddTask: () => void }) => {
 
   return (
     <div className='w-1/5 py-4'>
-      <div className='mb-4 bg-gray-100 min-h-24 p-4 rounded-xl'>
+      <div className='mb-4 bg-gray-100 min-h-24 p-4 rounded-xl shadow-lg border border-gray-300'>
         <img
           className='w-10 mb-4'
           src={expireSvg}
@@ -37,7 +37,7 @@ const Sidebar = ({ onAddTask }: { onAddTask: () => void }) => {
         <p className='text-3xl font-semibold'>{expiredTasks}</p>
       </div>
 
-      <div className='mb-4 bg-gray-100 min-h-24 p-4 rounded-xl'>
+      <div className='mb-4 bg-gray-100 min-h-24 p-4 rounded-xl shadow-lg border border-gray-300'>
         <img
           className='w-10 mb-4'
           src={activeSvg}
@@ -47,7 +47,7 @@ const Sidebar = ({ onAddTask }: { onAddTask: () => void }) => {
         <p className='text-3xl font-semibold'>{activeTasks}</p>
       </div>
 
-      <div className='mb-4 bg-gray-100 min-h-24 p-4 rounded-xl'>
+      <div className='mb-4 bg-gray-100 min-h-24 p-4 rounded-xl shadow-lg border border-gray-300'>
         <img
           className='w-10 mb-4'
           src={completeSvg}
