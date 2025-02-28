@@ -2,9 +2,9 @@ import expireSvg from "../assets/expire.svg";
 import activeSvg from "../assets/activeTask.svg";
 import completeSvg from "../assets/completedTask.svg";
 
-const Sidebar = () => {
+const Sidebar = ({ onAddTask }: { onAddTask: () => void }) => {
   return (
-    <div className='w-1/5'>
+    <div className='w-1/5 py-4'>
       <div className='mb-4 bg-gray-100 min-h-24 p-4 rounded-xl'>
         <img
           className='w-10 mb-4'
@@ -37,7 +37,9 @@ const Sidebar = () => {
         </p>
       </div>
 
-      <button className='w-full mt-4 bg-black text-white px-4 py-2 text-sm rounded-md'>
+      <button
+        className='w-full mt-4 bg-black text-white px-4 py-2 text-sm rounded-xl'
+        onClick={onAddTask}>
         + Add Task
       </button>
     </div>
