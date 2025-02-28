@@ -3,9 +3,14 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/taskdb";
+const MONGO_URL = process.env.MONGO_DB_URI;
 
 const connectDB = async () => {
+  if (!MONGO_URL) {
+    console.error("MongoDB URI is not defined");
+    process.exit(1);
+  }
+
   try {
     await mongoose.connect(MONGO_URL);
     console.log("MongoDB Connected");
