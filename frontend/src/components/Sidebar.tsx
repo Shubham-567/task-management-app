@@ -60,7 +60,7 @@ const Sidebar = ({ onAddTask }: { onAddTask: () => void }) => {
       </div>
 
       <button
-        className='w-full mt-4 bg-black text-white px-4 py-2 text-sm rounded-xl'
+        className='w-full mt-4 bg-black text-white px-4 py-2 text-sm rounded-xl shadow-lg'
         onClick={onAddTask}>
         + Add Task
       </button>

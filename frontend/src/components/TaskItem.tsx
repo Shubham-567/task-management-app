@@ -11,10 +11,10 @@ const TaskItem = ({ task }: { task: Task }) => {
   const deadline = new Date(task.expiresAt).toLocaleDateString("en-GB");
 
   return (
-    <div className='bg-white shadow-md p-4 rounded-xl mt-4 min-h-42 flex flex-col justify-between'>
+    <div className='bg-white shadow-md p-4 rounded-xl mt-4 min-h-42 flex flex-col justify-between border border-gray-300'>
       <div>
         <div
-          className={`text-xs inline px-2 py-1 rounded-md ${
+          className={`text-xs inline px-2 py-1 rounded-md  ${
             priorityColors[task.priority] || "text-gray-600 bg-gray-100"
           }`}>
           {task.priority}
