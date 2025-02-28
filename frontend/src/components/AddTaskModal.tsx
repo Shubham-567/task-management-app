@@ -61,7 +61,12 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
     <>
       <div className='fixed inset-0 bg-black/40 flex justify-center items-center'>
         <div className='relative bg-white p-6 rounded-xl w-96'>
-          <h2 className='text-xl font-bold mb-4'>Add Task</h2>
+          <div className='flex items-center justify-between mb-2'>
+            <h2 className='text-lg font-bold mb-4 flex items-center'>
+              <span className='bg-sky-500 h-2 w-2 rounded-full inline-block mr-2 mb-1'></span>
+              ADD TASK
+            </h2>
+          </div>
 
           <hr className='mb-2 border-gray-400' />
 
@@ -69,14 +74,14 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
             <input
               type='text'
               placeholder='Title'
-              className='w-full p-2 border mb-2 border-gray-200'
+              className='w-full p-2 border-b mb-2 border-black outline-none'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
 
             <textarea
               placeholder='Description'
-              className='w-full p-2 border border-gray-200 rounded mb-2'
+              className='w-full p-2 border border-gray-200 rounded mb-2 outline-none'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={8}
@@ -119,7 +124,7 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
       </div>
 
       {/* Add Task Success  */}
-      {showSuccessMessage || (
+      {showSuccessMessage && (
         <div className='fixed inset-0 flex items-center justify-center bg-black/50'>
           <div className='bg-white p-6 rounded-lg shadow-lg text-center w-80 flex justify-center items-center flex-col'>
             <img src={checkboxSvg} alt='black checkbox icon' />

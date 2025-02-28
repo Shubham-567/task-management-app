@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import TaskList from "./components/TaskList";
 import AddTaskModal from "./components/AddTaskModal";
@@ -11,6 +12,7 @@ function App() {
 
   return (
     <TaskProvider>
+      <Navbar />
       <div className='flex px-6'>
         <Sidebar onAddTask={() => setIsModalOpen(true)} />
         <div className='flex-1 px-6'>
