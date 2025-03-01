@@ -11,17 +11,21 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <TaskProvider>
-      <Navbar />
-      <div className='flex px-6'>
-        <Sidebar onAddTask={() => setIsModalOpen(true)} />
-        <div className='flex-1 px-6'>
-          <TaskList />
-        </div>
+    <div className='px-6 py-3 min-w-[300px]'>
+      <TaskProvider>
+        <Navbar />
+        <div className='flex flex-col-reverse gap-4 lg:flex-row '>
+          <Sidebar onAddTask={() => setIsModalOpen(true)} />
+          <div className='flex-1'>
+            <TaskList />
+          </div>
 
-        {isModalOpen && <AddTaskModal onClose={() => setIsModalOpen(false)} />}
-      </div>
-    </TaskProvider>
+          {isModalOpen && (
+            <AddTaskModal onClose={() => setIsModalOpen(false)} />
+          )}
+        </div>
+      </TaskProvider>
+    </div>
   );
 }
 

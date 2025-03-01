@@ -4,9 +4,9 @@ import downArrowSvg from "../assets/arrow.svg";
 
 const Navbar = () => {
   return (
-    <div className='bg-gray-100 rounded-xl p-2 mx-6 mt-4 flex items-center justify-between shadow-lg border border-gray-300'>
+    <div className='bg-gray-100 rounded-xl p-2 flex items-center justify-between shadow-lg border border-gray-300'>
       {/* search bar */}
-      <div className='relative w-1/3'>
+      <div className='relative w-1/3 min-w-[110px]'>
         <input
           type='text'
           placeholder='Search Task'
