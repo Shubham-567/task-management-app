@@ -10,7 +10,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", getTasks); // this doesn't give that error
+router.get("/", getTasks); 
 router.get("/:id", getTaskById);
 router.post("/", createTask);
 router.put("/:id", updateTask);
