@@ -60,7 +60,7 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
       <div className='fixed inset-0 bg-black/40 flex justify-center items-center'>
-        <div className='relative bg-white p-6 rounded-xl w-96'>
+        <div className='relative bg-white dark:bg-dark-background-2 dark:text-white p-6 rounded-xl w-96'>
           <div className='flex items-center justify-between mb-2'>
             <h2 className='text-lg font-bold mb-4 flex items-center'>
               <span className='bg-sky-500 h-2 w-2 rounded-full inline-block mr-2 mb-1'></span>
@@ -68,20 +68,20 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
             </h2>
           </div>
 
-          <hr className='mb-2 border-gray-400' />
+          <hr className='mb-2 border-gray-400 dark:border-dark-border' />
 
           <div className='px-1 pt-2'>
             <input
               type='text'
               placeholder='Title'
-              className='w-full p-2 border-b mb-2 border-black outline-none'
+              className='w-full p-2 border-b mb-2 border-black dark:border-dark-border outline-none'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
 
             <textarea
               placeholder='Description'
-              className='w-full p-2 border border-gray-200 rounded mb-2 outline-none'
+              className='w-full p-2 border border-gray-200 dark:border-dark-border rounded mb-2 outline-none'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={8}
@@ -89,14 +89,14 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
 
             <div className='flex justify-between'>
               <button
-                className='bg-gray-200 text-black px-4 py-2 rounded-xl'
+                className='bg-gray-200 dark:bg-zinc-700 text-black dark:text-white       px-4 py-2 rounded-xl'
                 onClick={() => setShowDatepicker(true)}>
                 {deadline
                   ? `Deadline: ${formatDate(deadline)}`
                   : "Select Deadline"}
               </button>
               <button
-                className='bg-gray-200 text-black px-4 py-2 rounded-xl'
+                className='bg-gray-200 dark:bg-zinc-700 text-black dark:text-white       px-4 py-2 rounded-xl'
                 onClick={handleAddTask}>
                 Add
               </button>
@@ -106,7 +106,7 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
           <img
             src={closeSvg}
             alt='Close icon'
-            className='absolute top-4 right-4 w-7 cursor-pointer'
+            className='absolute top-4 right-4 w-7 cursor-pointer dark:invert'
             onClick={onClose}
           />
         </div>
@@ -126,13 +126,17 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
       {/* Add Task Success  */}
       {showSuccessMessage && (
         <div className='fixed inset-0 flex items-center justify-center bg-black/50'>
-          <div className='bg-white p-6 rounded-lg shadow-lg text-center w-80 flex justify-center items-center flex-col'>
-            <img src={checkboxSvg} alt='black checkbox icon' />
-            <p className='text-lg font-medium mb-4'>
+          <div className='bg-white dark:bg-dark-background-2 dark:text-white p-6 rounded-lg shadow-lg text-center w-80 flex justify-center items-center flex-col'>
+            <img
+              src={checkboxSvg}
+              alt='black checkbox icon'
+              className='dark:invert'
+            />
+            <p className='text-lg font-medium mb-4 mt-2'>
               New task has been created Successfully
             </p>
             <button
-              className='bg-black text-white px-4 py-2 w-full rounded-md'
+              className='bg-black dark:bg-zinc-600 text-white px-4 py-2 w-full rounded-md'
               onClick={handleClose}>
               Back
             </button>

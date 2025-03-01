@@ -5,8 +5,8 @@ export interface Task {
   _id: string;
   title: string;
   description?: string;
-  category: "To Do" | "In Progress" | "Done";
-  priority: "Low" | "High";
+  category: "To Do" | "In Progress" | "Done" | "Timeout";
+  priority: "Low" | "Medium" | "High";
   expiresAt: string;
 }
 

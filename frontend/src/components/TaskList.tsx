@@ -18,7 +18,7 @@ const TaskList = () => {
       {categories.map((category) => (
         <div
           key={category}
-          className={`bg-gray-100 p-4 rounded-xl shadow-lg border border-gray-300 ${
+          className={`bg-gray-100 dark:bg-dark-background-2 dark:text-white p-4 rounded-xl shadow-lg border border-gray-300 dark:border-dark-border ${
             category === "Done" && "sm:col-span-2 lg:col-span-1"
           }`}>
           <h2 className='text-lg font-semibold flex items-center justify-center'>
@@ -31,7 +31,11 @@ const TaskList = () => {
             className={`${categoryColors[category]} border-0 h-1 w-full mt-2`}
           />
           {tasks
-            .filter((task) => task.category === category)
+            .filter(
+              (task) =>
+                task.category === category ||
+                (category === "To Do" && task.category === "Timeout")
+            )
             .map((task) => (
               <TaskItem key={task._id} task={task} />
             ))}

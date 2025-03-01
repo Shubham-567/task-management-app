@@ -4,11 +4,9 @@ export const checkAndMoveTimeoutTasks = async () => {
   const now = new Date();
 
   await Task.updateMany(
-    // $lt: less than (<)
-    // $ne: not equal (!=)
-    { expiresAt: { $lt: now }, category: { $ne: "Timeout" } },
+    { expiresAt: { $lt: now }, category: { $nin: ["Timeout", "Done"] } },
     { category: "Timeout" }
   );
-};
 
-setInterval(checkAndMoveTimeoutTasks, 60000); // run in every 1 minute
+  // console.log("Expired tasks moved to Timeout at:", now);
+};
