@@ -1,10 +1,12 @@
 import { Task } from "../context/TaskContext";
 
 const priorityColors: Record<string, string> = {
-  Low: "text-green-600 bg-green-100",
-  Medium: "text-yellow-600 bg-yellow-100",
-  High: "text-red-600 bg-red-100",
-  Completed: "text-green-600 bg-green-100",
+  Low: "text-green-600 bg-green-100 dark:text-green-300 dark:bg-green-900",
+  Medium:
+    "text-yellow-600 bg-yellow-100 dark:text-yellow-300 dark:bg-yellow-900",
+  High: "text-red-600 bg-red-100 dark:text-red-300 dark:bg-red-900",
+  Completed:
+    "text-green-600 bg-green-100 dark:text-green-300 dark:bg-green-900",
 };
 
 const TaskItem = ({ task }: { task: Task }) => {
