@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import searchSvg from "../assets/search.svg";
 import filterSvg from "../assets/filter.svg";
-import downArrowSvg from "../assets/arrow.svg";
 import sunSvg from "../assets/sun.svg";
 import moonSvg from "../assets/moon.svg";
 
