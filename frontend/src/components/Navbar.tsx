@@ -4,6 +4,7 @@ import searchSvg from "../assets/search.svg";
 import filterSvg from "../assets/filter.svg";
 import sunSvg from "../assets/sun.svg";
 import moonSvg from "../assets/moon.svg";
+import downArrowSvg from "../assets/arrow.svg";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(
@@ -41,12 +42,18 @@ const Navbar = () => {
         <button className='flex items-center gap-2 bg-white dark:bg-dark-background dark:text-white border border-gray-300 dark:border-dark-border px-4 py-2 rounded-md shadow-sm hover:bg- cursor-pointer min-w-[100px]'>
           <img src={filterSvg} alt='filter icon' className='w-4 dark:invert' />
           <span>Filter</span>
+
+          <img
+            src={downArrowSvg}
+            alt='dropdown arrow'
+            className='w-3 rotate-270 dark:invert hidden sm:block'
+          />
         </button>
 
         {/* Dark Mode Toggle */}
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className='p-2 w-10 h-10 border border-gray-300 dark:border-dark-border dark:border-gray-600 text-gray-900 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700'>
+          className='p-2 w-10 h-10 border border-gray-300 dark:border-dark-border text-gray-900 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700'>
           {darkMode ? (
             <img className='w-5 h-5 mx-auto' src={sunSvg} alt='Sun Icon' />
           ) : (
