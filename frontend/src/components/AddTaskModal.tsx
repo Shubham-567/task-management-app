@@ -59,7 +59,7 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <>
-      <div className='fixed inset-0 bg-black/40 flex justify-center items-center'>
+      <div className='fixed inset-0 bg-black/40 flex justify-center items-center p-6'>
         <div className='relative bg-white dark:bg-dark-background-2 dark:text-white p-6 rounded-xl w-96'>
           <div className='flex items-center justify-between mb-2'>
             <h2 className='text-lg font-bold mb-4 flex items-center'>

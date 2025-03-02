@@ -39,15 +39,9 @@ const Navbar = () => {
 
       <div className='flex gap-2'>
         {/* filter button */}
-        <button className='flex items-center gap-2 bg-white dark:bg-dark-background dark:text-white border border-gray-300 dark:border-dark-border px-4 py-2 rounded-md shadow-sm hover:bg- cursor-pointer'>
+        <button className='flex items-center gap-2 bg-white dark:bg-dark-background dark:text-white border border-gray-300 dark:border-dark-border px-4 py-2 rounded-md shadow-sm hover:bg- cursor-pointer min-w-[100px]'>
           <img src={filterSvg} alt='filter icon' className='w-4 dark:invert' />
           <span>Filter</span>
-
-          <img
-            src={downArrowSvg}
-            alt='dropdown arrow'
-            className='w-3 rotate-270 dark:invert'
-          />
         </button>
 
         {/* Dark Mode Toggle */}
