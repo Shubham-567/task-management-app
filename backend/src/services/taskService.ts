@@ -5,7 +5,15 @@ export const checkAndMoveTimeoutTasks = async () => {
 
   await Task.updateMany(
     { expiresAt: { $lt: now }, category: { $nin: ["Timeout", "Done"] } },
-    { category: "Timeout" }
+
+    [
+      {
+        $set: {
+          originalCategory: "$category", // store the original category
+          category: "Timeout",
+        },
+      },
+    ]
   );
 
   // console.log("Expired tasks moved to Timeout at:", now);

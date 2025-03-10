@@ -1,11 +1,12 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
-import { getTasks } from "../api/taskApi";
+import { createTask, deleteTask, getTasks, updateTask } from "../api/taskApi";
 
 export interface Task {
   _id: string;
   title: string;
   description?: string;
   category: "To Do" | "In Progress" | "Done" | "Timeout";
+  originalCategory?: "To Do" | "In Progress" | "Done";
   priority: "Low" | "Medium" | "High";
   expiresAt: string;
 }
@@ -13,6 +14,9 @@ export interface Task {
 interface TaskContextType {
   tasks: Task[];
   fetchTasks: () => void;
+  addTask: (task: Omit<Task, "_id">) => Promise<void>;
+  editTask: (id: string, updateTask: Partial<Task>) => Promise<void>;
+  removeTask: (id: string) => Promise<void>;
 }
 
 export const TaskContext = createContext<TaskContextType | undefined>(
@@ -23,8 +27,39 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const fetchTasks = async () => {
-    const data = await getTasks();
-    setTasks(data);
+    try {
+      const data = await getTasks();
+      setTasks(data);
+    } catch (error) {
+      console.log("Error fetching tasks: ", error);
+    }
+  };
+
+  const addTask = async (task: Omit<Task, "_id">) => {
+    try {
+      await createTask(task);
+      fetchTasks(); // refresh task
+    } catch (error) {
+      console.error("Error creating task: ", error);
+    }
+  };
+
+  const editTask = async (id: string, updatedTask: Partial<Task>) => {
+    try {
+      await updateTask(id, updatedTask);
+      fetchTasks(); // refresh task
+    } catch (error) {
+      console.error("Error updating task: ", error);
+    }
+  };
+
+  const removeTask = async (id: string) => {
+    try {
+      await deleteTask(id);
+      fetchTasks();
+    } catch (error) {
+      console.error("Error updating task: ", error);
+    }
   };
 
   useEffect(() => {
@@ -32,7 +67,8 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <TaskContext.Provider value={{ tasks, fetchTasks }}>
+    <TaskContext.Provider
+      value={{ tasks, fetchTasks, addTask, editTask, removeTask }}>
       {children}
     </TaskContext.Provider>
   );

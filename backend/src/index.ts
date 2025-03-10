@@ -21,7 +21,7 @@ const startServer = async () => {
     await connectDB();
 
     if (!intervalSet) {
-      setInterval(checkAndMoveTimeoutTasks, 5000); // run in every 1 minute
+      setInterval(checkAndMoveTimeoutTasks, 60000); // run in every 1 minute
       intervalSet = true;
     }
 

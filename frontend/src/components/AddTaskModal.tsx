@@ -2,15 +2,33 @@ import { useState, useContext } from "react";
 import closeSvg from "../assets/close.svg";
 import checkboxSvg from "../assets/checkbox.svg";
 import CalendarModal from "./CalendarModal";
-import { TaskContext } from "../context/TaskContext";
-import { createTask } from "../api/taskApi";
+import { Task, TaskContext } from "../context/TaskContext";
 
-const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
-  const { fetchTasks } = useContext(TaskContext) || {};
+const AddTaskModal = ({
+  onClose,
+  existingTask,
+}: {
+  onClose: () => void;
+  existingTask?: Task;
+}) => {
+  const taskContext = useContext(TaskContext);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [deadline, setDeadline] = useState<Date | null>(null);
+  // in case this component is not part of taskProvider
+  if (!taskContext) {
+    console.error("Task Context is undefined");
+    return null;
+  }
+
+  const { addTask, editTask } = taskContext;
+
+  const [title, setTitle] = useState(existingTask?.title || "");
+  const [description, setDescription] = useState(
+    existingTask?.description || ""
+  );
+  const [deadline, setDeadline] = useState<Date | null>(
+    existingTask ? new Date(existingTask.expiresAt) : null
+  );
+
   const [showDatepicker, setShowDatepicker] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -36,15 +54,22 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
       return;
     }
 
-    const newTask = {
-      title,
-      description: description.trim() || undefined,
-      expiresAt: formatDate(deadline),
-    };
-
     try {
-      await createTask(newTask);
-      fetchTasks && fetchTasks(); // refresh task list
+      if (existingTask) {
+        await editTask(existingTask._id, {
+          title,
+          description: description.trim() || undefined,
+          expiresAt: formatDate(deadline),
+        });
+      } else {
+        await addTask({
+          title,
+          description: description.trim() || undefined,
+          category: "To Do", // default for new task
+          priority: "Medium", // default
+          expiresAt: formatDate(deadline),
+        });
+      }
 
       setShowSuccessMessage(true);
     } catch (error) {
@@ -59,12 +84,12 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <>
-      <div className='fixed inset-0 bg-black/40 flex justify-center items-center p-6'>
+      <div className='fixed inset-0 bg-black/40 flex justify-center items-center p-6 z-10'>
         <div className='relative bg-white dark:bg-dark-background-2 dark:text-white p-6 rounded-xl w-96'>
           <div className='flex items-center justify-between mb-2'>
             <h2 className='text-lg font-bold mb-4 flex items-center'>
               <span className='bg-sky-500 h-2 w-2 rounded-full inline-block mr-2 mb-1'></span>
-              ADD TASK
+              {existingTask ? "EDIT TASK" : "ADD TASK"}
             </h2>
           </div>
 
@@ -89,16 +114,16 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
 
             <div className='flex justify-between'>
               <button
-                className='bg-gray-200 dark:bg-zinc-700 text-black dark:text-white       px-4 py-2 rounded-xl'
+                className='bg-gray-200 dark:bg-zinc-700 text-black dark:text-white px-4 py-2 rounded-xl'
                 onClick={() => setShowDatepicker(true)}>
                 {deadline
                   ? `Deadline: ${formatDate(deadline)}`
                   : "Select Deadline"}
               </button>
               <button
-                className='bg-gray-200 dark:bg-zinc-700 text-black dark:text-white       px-4 py-2 rounded-xl'
+                className='bg-gray-200 dark:bg-zinc-700 text-black dark:text-white px-4 py-2 rounded-xl'
                 onClick={handleAddTask}>
-                Add
+                {existingTask ? "Update" : "Add"}
               </button>
             </div>
           </div>
@@ -133,7 +158,9 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
               className='dark:invert'
             />
             <p className='text-lg font-medium mb-4 mt-2'>
-              New task has been created Successfully
+              {existingTask
+                ? "Task has been Updated Successfully"
+                : "New task has been created Successfully"}
             </p>
             <button
               className='bg-black dark:bg-zinc-600 text-white px-4 py-2 w-full rounded-md'

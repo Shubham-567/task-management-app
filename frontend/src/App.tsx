@@ -11,7 +11,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className='px-6 py-3 min-h-screen min-w-[337px] dark:bg-dark-background'>
+    <div className='px-6 pt-3 pb-22 min-h-screen min-w-[337px] dark:bg-dark-background'>
       <TaskProvider>
         <Navbar />
         <div className='flex flex-col-reverse gap-4 lg:flex-row '>

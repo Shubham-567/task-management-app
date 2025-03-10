@@ -24,7 +24,7 @@ const CalendarModal = ({ onSelectDate, onClose }: CalendarModalProps) => {
   };
 
   return (
-    <div className='fixed inset-0 bg-black/50 flex justify-center items-center'>
+    <div className='fixed inset-0 bg-black/50 flex justify-center items-center z-50'>
       <div className='rounded-lg shadow-lg'>
         <Calendar
           onChange={handleDateChange}
