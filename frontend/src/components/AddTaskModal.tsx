@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import closeSvg from "../assets/close.svg";
-import checkboxSvg from "../assets/checkbox.svg";
 import CalendarModal from "./CalendarModal";
+import SuccessModal from "./SuccessModal";
 import { Task, TaskContext } from "../context/TaskContext";
 
 const AddTaskModal = ({
@@ -34,11 +34,7 @@ const AddTaskModal = ({
 
   // dd/mm/yyy
   const formatDate = (date: Date): string => {
-    return `${date.getDate().toString().padStart(2, "0")}/${(
-      date.getMonth() + 1
-    )
-      .toString()
-      .padStart(2, "0")}/${date.getFullYear()}`;
+    return new Date(date).toISOString().split("T")[0];
   };
 
   const handleAddTask = async () => {
@@ -65,9 +61,9 @@ const AddTaskModal = ({
         await addTask({
           title,
           description: description.trim() || undefined,
-          category: "To Do", // default for new task
-          priority: "Medium", // default
           expiresAt: formatDate(deadline),
+          category: "To Do", // Default category
+          priority: "Medium", // Default priority
         });
       }
 
@@ -150,25 +146,14 @@ const AddTaskModal = ({
 
       {/* Add Task Success  */}
       {showSuccessMessage && (
-        <div className='fixed inset-0 flex items-center justify-center bg-black/50'>
-          <div className='bg-white dark:bg-dark-background-2 dark:text-white p-6 rounded-lg shadow-lg text-center w-80 flex justify-center items-center flex-col'>
-            <img
-              src={checkboxSvg}
-              alt='black checkbox icon'
-              className='dark:invert'
-            />
-            <p className='text-lg font-medium mb-4 mt-2'>
-              {existingTask
-                ? "Task has been Updated Successfully"
-                : "New task has been created Successfully"}
-            </p>
-            <button
-              className='bg-black dark:bg-zinc-600 text-white px-4 py-2 w-full rounded-md'
-              onClick={handleClose}>
-              Back
-            </button>
-          </div>
-        </div>
+        <SuccessModal
+          message={
+            existingTask
+              ? "Task has been Updated Successfully"
+              : "New task has been created Successfully"
+          }
+          onClose={handleClose}
+        />
       )}
     </>
   );

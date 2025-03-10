@@ -53,7 +53,7 @@ const Sidebar = ({ onAddTask }: { onAddTask: () => void }) => {
           />
           <p className='text-sm'>Completed Tasks</p>
           <p className='text-3xl font-semibold'>
-            {completedTasks}/<span className='text-2xl'>{tasks.length}</span>
+            {completedTasks}/<span className='text-xl'>{tasks.length}</span>
           </p>
         </div>
       </div>

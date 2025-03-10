@@ -1,6 +1,6 @@
-import { Task } from "../context/TaskContext";
+import { Task, TaskContext } from "../context/TaskContext";
 import optionSvg from "../assets/ellipsis-vertical.svg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import AddTaskModal from "./AddTaskModal";
 
 const priorityColors: Record<string, string> = {
@@ -26,6 +26,16 @@ const TaskItem = ({
   const [isDragging, setIsDragging] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  const taskContext = useContext(TaskContext);
+
+  // in case this component is not part of taskProvider
+  if (!taskContext) {
+    console.error("Task Context is undefined");
+    return null;
+  }
+
+  const { removeTask } = taskContext;
+
   // close menu when clicked outside of menu
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -38,10 +48,25 @@ const TaskItem = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want ot delete this task"
+    );
+    try {
+      if (confirmDelete) {
+        await removeTask(task._id);
+        alert("Task has been deleted successfully");
+      }
+    } catch (error) {
+      console.error("Error while deleting a task: ", error);
+      alert("Error while deleting a task");
+    }
+  };
+
   return (
     <>
       <div
-        className={`bg-white dark:bg-dark-background shadow-md p-4 rounded-xl mt-4 min-h-42 flex flex-col justify-between border border-gray-300 dark:border-dark-border transition-transform duration-200 ${
+        className={`bg-white dark:bg-dark-background shadow-md p-4 rounded-xl mt-4 min-h-42 flex flex-col justify-between border border-gray-300 dark:border-dark-border transition-transform duration-200 cursor-grab ${
           isDragging ? "opacity-50 scale-105 shadow-lg" : ""
         }`}
         draggable
@@ -80,7 +105,9 @@ const TaskItem = ({
                       Edit Task
                     </li>
 
-                    <li className='px-4 py-2 hover:bg-gray-200 dark:hover:bg-dark-background cursor-pointer'>
+                    <li
+                      className='px-4 py-2 hover:bg-gray-200 dark:hover:bg-dark-background cursor-pointer'
+                      onClick={handleDelete}>
                       Delete Task
                     </li>
                   </ul>
