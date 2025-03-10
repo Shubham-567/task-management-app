@@ -110,14 +110,14 @@ const AddTaskModal = ({
 
             <div className='flex justify-between'>
               <button
-                className='bg-gray-200 dark:bg-zinc-700 text-black dark:text-white px-4 py-2 rounded-xl'
+                className='bg-gray-200 dark:bg-zinc-700 text-black dark:text-white px-4 py-2 rounded-xl cursor-pointer'
                 onClick={() => setShowDatepicker(true)}>
                 {deadline
                   ? `Deadline: ${formatDate(deadline)}`
                   : "Select Deadline"}
               </button>
               <button
-                className='bg-gray-200 dark:bg-zinc-700 text-black dark:text-white px-4 py-2 rounded-xl'
+                className='bg-gray-200 dark:bg-zinc-700 text-black dark:text-white px-4 py-2 rounded-xl cursor-pointer'
                 onClick={handleAddTask}>
                 {existingTask ? "Update" : "Add"}
               </button>

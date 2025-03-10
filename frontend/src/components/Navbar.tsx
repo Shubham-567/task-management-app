@@ -53,7 +53,7 @@ const Navbar = () => {
         {/* Dark Mode Toggle */}
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className='p-2 w-10 h-10 border border-gray-300 dark:border-dark-border text-gray-900 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700'>
+          className='p-2 w-10 h-10 border border-gray-300 dark:border-dark-border text-gray-900 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer'>
           {darkMode ? (
             <img className='w-5 h-5 mx-auto' src={sunSvg} alt='Sun Icon' />
           ) : (

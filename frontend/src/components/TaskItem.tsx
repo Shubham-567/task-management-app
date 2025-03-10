@@ -85,7 +85,9 @@ const TaskItem = ({
             </div>
 
             <div className='relative' ref={menuRef}>
-              <button onClick={() => setMenuOpen(true)} className='z-5'>
+              <button
+                onClick={() => setMenuOpen(true)}
+                className='z-5 cursor-pointer'>
                 <img
                   src={optionSvg}
                   alt='task options'
